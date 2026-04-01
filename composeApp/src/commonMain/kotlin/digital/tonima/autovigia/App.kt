@@ -25,11 +25,14 @@ import digital.tonima.autovigia.domain.usecase.VehicleStateMachine
 import digital.tonima.autovigia.ui.designsystem.AutoVigIATokens
 import digital.tonima.autovigia.ui.designsystem.AutoVigIATypography
 import digital.tonima.autovigia.ui.designsystem.VehicleStatusCard
+import digital.tonima.autovigia.ui.features.home.HomeScreen
+import digital.tonima.autovigia.ui.features.home.DetectionViewModel
 import digital.tonima.autovigia.ui.features.onboarding.OnboardingScreen
 import digital.tonima.autovigia.ui.features.permissions.PermissionScreen
 import androidx.compose.foundation.layout.padding
 import androidx.compose.ui.unit.dp
 import org.koin.compose.koinInject
+import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
 @Preview
@@ -52,21 +55,19 @@ fun App(
         ),
         typography = AutoVigIATypography
     ) {
-        Column(
-            modifier = Modifier
-                .background(AutoVigIATokens.Background)
-                .safeContentPadding()
-                .fillMaxSize()
-                .padding(16.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
+        androidx.compose.material3.Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = AutoVigIATokens.Background
         ) {
             when (currentState) {
                 AppState.ONBOARDING -> OnboardingScreen()
                 AppState.PERMISSIONS -> PermissionScreen(
                     onAllPermissionsGranted = { stateMachine.onPermissionsGranted() }
                 )
-                AppState.CALIBRATING -> Text("Calibrando...")
-                AppState.MONITORING -> Text("Monitorando...")
+                else -> {
+                    val viewModel: DetectionViewModel = koinViewModel()
+                    HomeScreen(viewModel)
+                }
             }
         }
     }

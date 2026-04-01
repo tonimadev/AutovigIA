@@ -13,7 +13,8 @@ data class VehicleEntity(
     val year: Int,
     val engine: String,
     val odometer: Long,
-    val initialStatus: String // Store as String for simplicity or use Converters
+    val initialStatus: String,
+    val autoStartEnabled: Boolean = false
 )
 
 fun VehicleEntity.toDomain() = Vehicle(
@@ -22,7 +23,8 @@ fun VehicleEntity.toDomain() = Vehicle(
     year = year,
     engine = engine,
     odometer = odometer,
-    initialStatus = VehicleStatus.valueOf(initialStatus)
+    initialStatus = VehicleStatus.valueOf(initialStatus),
+    autoStartEnabled = autoStartEnabled
 )
 
 fun Vehicle.toEntity() = VehicleEntity(
@@ -31,5 +33,6 @@ fun Vehicle.toEntity() = VehicleEntity(
     year = year,
     engine = engine,
     odometer = odometer,
-    initialStatus = initialStatus.name
+    initialStatus = initialStatus.name,
+    autoStartEnabled = autoStartEnabled
 )

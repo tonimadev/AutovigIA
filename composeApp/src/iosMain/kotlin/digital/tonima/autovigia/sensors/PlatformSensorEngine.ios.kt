@@ -25,7 +25,7 @@ class IosSensorEngine : SensorEngine {
                     audioFFT = FloatArray(128) { 0f },
                     accelerometer = IMUData(0f, 0f, 0f),
                     gyroscope = IMUData(0f, 0f, 0f),
-                    anomalyScore = (0..100).random() / 100f
+                    anomalyScore = if ((0..100).random() > 95) 0.9f else 0.1f // Estabilizado: Picos raros
                 )
             )
             delay(100)

@@ -6,7 +6,8 @@ data class Vehicle(
     val year: Int,
     val engine: String,
     val odometer: Long,
-    val initialStatus: VehicleStatus = VehicleStatus.HEALTHY
+    val initialStatus: VehicleStatus = VehicleStatus.HEALTHY,
+    val autoStartEnabled: Boolean = false
 )
 
 enum class VehicleStatus {
@@ -18,5 +19,7 @@ enum class AppState {
     ONBOARDING,
     PERMISSIONS,
     CALIBRATING,
-    MONITORING
+    MONITORING,
+    INACTIVE,
+    ANOMALY
 }

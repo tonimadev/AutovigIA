@@ -6,6 +6,9 @@ import digital.tonima.autovigia.domain.repository.VehicleRepository
 import digital.tonima.autovigia.domain.usecase.VehicleStateMachine
 import digital.tonima.autovigia.ui.features.onboarding.OnboardingViewModel
 import digital.tonima.autovigia.ui.features.permissions.PermissionViewModel
+import digital.tonima.autovigia.ui.features.home.DetectionViewModel
+import digital.tonima.autovigia.domain.usecase.DetectionManager
+import digital.tonima.autovigia.sensors.BackgroundController
 import digital.tonima.autovigia.sensors.PlatformSensorEngine
 import digital.tonima.autovigia.sensors.SensorEngine
 import org.koin.core.context.startKoin
@@ -29,9 +32,11 @@ fun commonModule() = module {
     single<VehicleRepository> { VehicleRepositoryImpl(get()) }
     single { CoroutineScope(Dispatchers.Default + SupervisorJob()) }
     single { PlatformSensorEngine().getEngine() }
-    single { VehicleStateMachine(get(), get(), get()) }
+    single { VehicleStateMachine(get(), get()) }
     viewModel { OnboardingViewModel(get(), get()) }
     viewModel { PermissionViewModel(get()) }
+    single { DetectionManager(get(), get(), get(), get()) }
+    viewModel { DetectionViewModel(get()) }
     single { 
         val builder: RoomDatabase.Builder<AppDatabase> = get()
         builder
