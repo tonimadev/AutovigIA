@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">AutoVigIA</string>
+    
+    <!-- Permission Rationales -->
+    <string name="perm_audio_title">Acesso ao Áudio</string>
+    <string name="perm_audio_desc">Precisamos ouvir o som do motor para detectar anomalias mecânicas através de Edge AI.</string>
+    
+    <string name="perm_location_title">Localização</string>
+    <string name="perm_location_desc">A localização é usada para criar o baseline de condução e monitorar o veículo durante trajetos.</string>
+    
+    <string name="perm_sensors_title">Sensores de Movimento</string>
+    <string name="perm_sensors_desc">O acelerômetro e giroscópio são essenciais para medir vibrações e detectar comportamentos anômalos no carro.</string>
+    
+    <string name="perm_button_grant">Conceder Permissões</string>
+    <string name="perm_status_denied">Permissões necessárias para o funcionamento do monitoramento.</string>
+</resources>
